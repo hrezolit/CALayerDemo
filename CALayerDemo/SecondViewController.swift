@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SecondViewController: UIViewController {
-
+    
     let imageView = UIImageView()
     let myButton = UIButton()
+    var playerA = AVAudioPlayer()
+    let audioPath = Bundle.main.path(forResource: "bell", ofType: "mp3")
     var gradientLayer: CAGradientLayer! {
         didSet {
             gradientLayer.startPoint = CGPoint(x: 0, y: 0)
@@ -19,12 +22,26 @@ class SecondViewController: UIViewController {
         }
     }
     
+    var loadFrame: CAShapeLayer! {
+        didSet {
+            loadFrame.lineWidth = 15
+            loadFrame.lineCap = .round
+            loadFrame.fillColor = nil
+            loadFrame.strokeEnd = 0
+            loadFrame.strokeColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1).cgColor
+        }
+    }
+    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         view.addSubview(imageView)
         view.addSubview(myButton)
+        
+        loadFrame = CAShapeLayer()
+        view.layer.addSublayer(loadFrame)
         
         gradientLayer = CAGradientLayer()
         view.layer.insertSublayer(gradientLayer, at: 0)
@@ -34,15 +51,30 @@ class SecondViewController: UIViewController {
         setItemsContraints()
         setItemsLook()
     }
-    
+    //MARK: - viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer.frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 50 + 80 + imageView.frame.size.height / 2)
+        
+        drawGoldenFrame()
+        
     }
     
     // Actions:
     @objc func myButtonTapped() {
+        
+        guard loadFrame.strokeEnd >= 0.9  else {
+            loadFrame.strokeEnd += 0.1
+            return
+        }
+        
+        // Play bell sound after fill path of golden line
+        playerA = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!))
+        playerA.volume = 0.6
+        playerA.play()
+        
         dismiss(animated: true)
+        
     }
     
     //MARK: - Private methods:
@@ -79,5 +111,17 @@ class SecondViewController: UIViewController {
         myButton.layer.shadowOpacity = 1
         myButton.layer.shadowRadius = 0
         myButton.layer.shadowColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    }
+    
+    // Golden frame path
+    private func drawGoldenFrame() {
+        loadFrame.frame = view.bounds
+        let imageLoadFrame = UIBezierPath()
+        imageLoadFrame.move(to: CGPoint(x: imageView.frame.origin.x + 5, y: imageView.frame.origin.y + 5))
+        imageLoadFrame.addLine(to: CGPoint(x: imageView.frame.origin.x + 195, y: imageView.frame.origin.y + 5))
+        imageLoadFrame.addLine(to: CGPoint(x: imageView.frame.origin.x + 195, y: imageView.frame.origin.y + 195))
+        imageLoadFrame.addLine(to: CGPoint(x: imageView.frame.origin.x + 5, y: imageView.frame.origin.y + 195))
+        imageLoadFrame.addLine(to: CGPoint(x: imageView.frame.origin.x + 5, y: imageView.frame.origin.y + 5))
+        loadFrame.path = imageLoadFrame.cgPath
     }
 }

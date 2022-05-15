@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D522464B2830CCC3003D46D0 /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D522464A2830CCC3003D46D0 /* bell.mp3 */; };
 		D5AA848C282F6A03000BC1EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AA848B282F6A03000BC1EB /* AppDelegate.swift */; };
 		D5AA848E282F6A03000BC1EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AA848D282F6A03000BC1EB /* SceneDelegate.swift */; };
 		D5AA8490282F6A03000BC1EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AA848F282F6A03000BC1EB /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D522464A2830CCC3003D46D0 /* bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell.mp3; sourceTree = "<group>"; };
 		D5AA8488282F6A03000BC1EB /* CALayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CALayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5AA848B282F6A03000BC1EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5AA848D282F6A03000BC1EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				D5AA849F282F6B4B000BC1EB /* SecondViewController.swift */,
 				D5AA8491282F6A03000BC1EB /* Main.storyboard */,
 				D5AA8494282F6A04000BC1EB /* Assets.xcassets */,
+				D522464A2830CCC3003D46D0 /* bell.mp3 */,
 				D5AA8496282F6A04000BC1EB /* LaunchScreen.storyboard */,
 				D5AA8499282F6A04000BC1EB /* Info.plist */,
 			);
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5AA8498282F6A04000BC1EB /* LaunchScreen.storyboard in Resources */,
+				D522464B2830CCC3003D46D0 /* bell.mp3 in Resources */,
 				D5AA8495282F6A04000BC1EB /* Assets.xcassets in Resources */,
 				D5AA8493282F6A03000BC1EB /* Main.storyboard in Resources */,
 			);
